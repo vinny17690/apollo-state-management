@@ -1,5 +1,6 @@
 import '../styles/globals.css'
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import { reactiveVar } from '../lib/cache'
 
 const client = new ApolloClient({
 	uri: 'https://api.spacex.land/graphql',
@@ -11,6 +12,9 @@ const client = new ApolloClient({
 						read() {
 							return 'local only field value'
 						}
+					},
+					reactiveVarField: () => {
+						return reactiveVar()
 					}
 				}
 			}
